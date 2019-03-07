@@ -4,8 +4,8 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "ts-node-dev --respawn --transpileOnly src/index.ts",
-    "serve": "tsc && netlify-lambda serve src",
-    "build": "tsc && netlify-lambda build src",
+    "serve": "netlify-lambda serve src/lambda",
+    "build": "netlify-lambda build src/lambda",
     "lint": "tslint src/**/*.ts --fix",
     "lint:ci": "tslint src/**/*.ts"
   },
