@@ -13,8 +13,11 @@
   },
   "homepage": "https://github.com/rabelloo/muvy#readme",
   "scripts": {
-    "start": "cd app && npm run start && cd ../server && npm run dev",
-    "build": "cd app && npm run build && cd ../server && npm run build",
+    "start": "concurrently \"npm run --prefix app start\" \"npm run --prefix server start\"",
+    "build": "concurrently \"npm run --prefix app build\" \"npm run --prefix server build\"",
     "lint": "tslint **/*.ts --fix"
+  },
+  "devDependencies": {
+    "concurrently": "^4.1.0"
   }
 }
