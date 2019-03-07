@@ -13,8 +13,8 @@
   },
   "homepage": "https://github.com/rabelloo/muvy#readme",
   "scripts": {
-    "start": "cd app && npm run start && cd ../functions && npm run dev",
-    "build": "cd app && npm run build && cd ../functions && npm run build",
+    "start": "cd app && npm run start && cd ../server && npm run dev",
+    "build": "cd app && npm run build && cd ../server && npm run build",
     "lint": "tslint **/*.ts --fix"
   }
 }

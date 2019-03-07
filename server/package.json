@@ -1,0 +1,29 @@
+{
+  "name": "muvy-server",
+  "private": true,
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "ts-node-dev --respawn --transpileOnly src/index.ts",
+    "serve": "tsc && netlify-lambda serve src",
+    "build": "tsc && netlify-lambda build src",
+    "lint": "tslint src/**/*.ts --fix",
+    "lint:ci": "tslint src/**/*.ts"
+  },
+  "dependencies": {
+    "apollo-datasource-rest": "^0.3.2",
+    "apollo-server": "^2.4.8",
+    "apollo-server-lambda": "^2.4.8",
+    "aws-lambda": "^0.1.2",
+    "dotenv": "^6.2.0",
+    "graphql": "^14.1.1"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.21",
+    "@types/dotenv": "^6.1.0",
+    "@types/graphql": "^14.0.7",
+    "netlify-lambda": "^1.4.2",
+    "ts-node-dev": "^1.0.0-pre.32",
+    "tslint": "^5.13.1",
+    "typescript": "^3.3.3333"
+  }
+}
