@@ -14,6 +14,7 @@
   "homepage": "https://github.com/rabelloo/muvy#readme",
   "scripts": {
     "start": "concurrently \"npm run --prefix app start\" \"npm run --prefix server start\"",
+    "prebuild": "cd app && npm ci && cd ../server && npm ci && cd ..",
     "build": "concurrently \"npm run --prefix app build\" \"npm run --prefix server build\"",
     "lint": "tslint **/*.ts --fix"
   },
