@@ -5,6 +5,7 @@
   "scripts": {
     "start": "ts-node-dev --respawn --transpileOnly src/index.ts",
     "build": "tsc",
+    "now-build": "tsc",
     "lint": "tslint src/**/*.ts --fix",
     "lint:ci": "tslint src/**/*.ts"
   },
