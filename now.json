@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "app/index.html", "use": "@now/static" },
+    { "src": "server/dist/graphql.js", "use": "@now/node" }
+  ]
+}
