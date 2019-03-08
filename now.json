@@ -6,5 +6,8 @@
       "use": "@now/static-build"
     },
     { "src": "server/dist/graphql.js", "use": "@now/node" }
-  ]
+  ],
+  "env": {
+    "apiKey": "@apiKey"
+  }
 }
