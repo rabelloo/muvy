@@ -1,13 +1,21 @@
 {
   "version": 2,
   "builds": [
-    {
-      "src": "app/package.json",
-      "use": "@now/static-build"
-    },
-    { "src": "server/package.json", "use": "@now/node" }
+    { "src": "app/package.json", "use": "@now/static-build" },
+    { "src": "server/src/index.ts", "use": "@now/node-server@canary" }
   ],
   "env": {
     "apiKey": "@apikey"
-  }
+  },
+  "routes": [
+    { "src": "^/api.*", "dest": "server/src/index.ts" },
+    { "src": ".*", "methods": ["POST"], "dest": "server/src/index.ts" },
+    {
+      "src": "/service-worker.js",
+      "headers": { "cache-control": "s-maxage=0" },
+      "dest": "/service-worker.js"
+    },
+    { "src": "/(.+\\.\\w+)$", "dest": "app/$1" },
+    { "src": "/.*", "dest": "app/index.html" }
+  ]
 }
