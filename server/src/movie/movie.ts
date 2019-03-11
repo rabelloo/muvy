@@ -1,6 +1,21 @@
 import { gql } from 'apollo-server';
 
-export { Movie } from '../../../interfaces/movie';
+export interface Movie {
+  id: number;
+  title: string;
+  summary: string;
+  score: number;
+  votes: number;
+  popularity: number;
+  releaseDate: Date;
+  poster: string;
+  backdrop: string;
+  originalLanguage: string;
+  originalTitle: string;
+  video: boolean;
+  genres: number[];
+  adult: boolean;
+}
 
 export const MovieType = gql`
   type Movie {
