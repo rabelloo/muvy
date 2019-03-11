@@ -1,6 +1,6 @@
 import { gql } from 'apollo-server';
 
-export { Movie } from '~interfaces/movie';
+export { Movie } from '../../../interfaces/movie';
 
 export const MovieType = gql`
   type Movie {

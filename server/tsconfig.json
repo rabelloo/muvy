@@ -5,11 +5,7 @@
   "compilerOptions": {
     "outDir": "dist",
     "rootDir": "src",
-    "module": "commonjs",
-    "baseUrl": ".",
-    "paths": {
-      "~interfaces/*": ["../interfaces/*"]
-    }
+    "module": "commonjs"
   },
   "references": [{ "path": "../interfaces" }]
 }
