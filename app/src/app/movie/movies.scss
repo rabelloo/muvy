@@ -1,0 +1,18 @@
+@import '../styles/media.scss';
+
+.ul {
+  display: grid;
+  grid-gap: 2rem;
+  grid: auto-flow / auto;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+
+  @media screen and (min-width: $small) {
+    grid: auto-flow / auto auto;
+  }
+
+  @media screen and (min-width: $medium) {
+    grid: auto-flow / auto auto auto;
+  }
+}

@@ -2,7 +2,7 @@
   "compilerOptions": {
     "module": "es2015",
     "moduleResolution": "node",
-    "target": "es6",
+    "target": "es2015",
     "esModuleInterop": true,
     "sourceMap": true,
 
@@ -13,6 +13,13 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "skipLibCheck": false,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+
+    "baseUrl": ".",
+    "paths": {
+      "~interfaces/*": ["interfaces/*"]
+    },
+
+    "plugins": [{ "name": "typescript-plugin-css-modules" }]
   }
 }

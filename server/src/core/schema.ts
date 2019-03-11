@@ -1,7 +1,8 @@
-import { gql, IResolvers } from 'apollo-server';
-import { DataSources as ApolloDataSources } from 'apollo-server-core/dist/graphqlOptions';
+import { gql } from 'apollo-server';
 import { MovieType } from '../movie/movie';
 import { MoviesAPI } from '../movie/movies.api';
+import { DataSources } from './data-sources';
+import { Resolvers } from './resolver';
 
 export const typeDefs = gql`
   type Query {
@@ -21,17 +22,3 @@ export const resolvers: Resolvers = {
 export const dataSources = (): DataSources => ({
   moviesAPI: new MoviesAPI(),
 });
-
-export interface DataSources extends ApolloDataSources<any> {
-  moviesAPI: MoviesAPI;
-}
-
-export type Resolver = (
-  source: any,
-  args: any,
-  config: { dataSources: DataSources }
-) => any;
-
-export interface Resolvers extends IResolvers {
-  Query: { [key: string]: Resolver };
-}

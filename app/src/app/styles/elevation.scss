@@ -1,0 +1,60 @@
+$sizes: (
+  ((0, 0, 0), (0, 0, 0), (0, 0, 0)),
+  ((2, 1, -1), (1, 1, 0), (1, 3, 0)),
+  ((3, 1, -2), (2, 2, 0), (1, 5, 0)),
+  ((3, 3, -2), (3, 4, 0), (1, 8, 0)),
+  ((2, 4, -1), (4, 5, 0), (1, 10, 0)),
+  ((3, 5, -1), (5, 8, 0), (1, 14, 0)),
+  ((3, 5, 1), (6, 10, 0), (1, 18, 0)),
+  ((4, 5, 2), (7, 10, 1), (2, 16, 1)),
+  ((5, 5, 3), (8, 10, 1), (3, 14, 2)),
+  ((5, 6, 3), (9, 12, 1), (3, 16, 2)),
+  ((6, 6, 3), (10, 14, 1), (4, 18, 3)),
+  ((6, 7, 4), (11, 15, 1), (4, 20, 3)),
+  ((7, 8, 4), (12, 17, 2), (5, 22, 4)),
+  ((7, 8, 4), (13, 19, 2), (5, 24, 4)),
+  ((7, 9, 4), (14, 21, 2), (5, 26, 4)),
+  ((8, 9, 5), (15, 22, 2), (6, 28, 5)),
+  ((8, 10, 5), (16, 24, 2), (6, 30, 5)),
+  ((8, 11, 5), (17, 26, 2), (6, 32, 5)),
+  ((9, 11, 5), (18, 28, 2), (7, 34, 6)),
+  ((9, 12, 6), (19, 29, 2), (7, 36, 6)),
+  ((10, 13, 6), (20, 31, 3), (8, 38, 7)),
+  ((10, 13, 6), (21, 33, 3), (8, 40, 7)),
+  ((10, 14, 6), (22, 35, 3), (8, 42, 7)),
+  ((11, 14, 7), (23, 36, 3), (9, 44, 8)),
+  ((11, 15, 7), (24, 38, 3), (9, 46, 8)),
+);
+
+$alphas: (.2, .14, .12);
+
+$box-shadow-duration: 280ms;
+$box-shadow-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+@mixin box-shadow($elevation, $withTransition: false) {
+  box-shadow: box-shadow-line($elevation + 1, 1),
+              box-shadow-line($elevation + 1, 2),
+              box-shadow-line($elevation + 1, 3);
+
+  @if ($withTransition) {
+    transition: box-shadow $box-shadow-duration $box-shadow-function;
+    will-change: box-shadow;
+
+    &:hover {
+      box-shadow: box-shadow-line($elevation + 3, 1),
+                  box-shadow-line($elevation + 3, 2),
+                  box-shadow-line($elevation + 3, 3);
+    }
+  }
+}
+
+@function box-shadow-line($size, $index) {
+  $alpha: nth($alphas, $index);
+  $lines: nth($sizes, $size);
+  $line: nth($lines, $index);
+  $top: nth($line, 1) + 0px;
+  $left: nth($line, 2) + 0px;
+  $blur: nth($line, 3) + 0px;
+
+  @return 0px $top $left $blur rgba(0, 0, 0, $alpha);
+}

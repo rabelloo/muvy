@@ -1,0 +1,44 @@
+@import '../styles/elevation.scss';
+@import '../styles/media.scss';
+
+$width: 500px;
+
+.li {
+  display: inline-block;
+  list-style: none;
+  max-width: $width * .75;
+  transition: max-width .3s;
+
+  @media screen and (min-width: $small) {
+    max-width: $width;
+  }
+
+  div[class^='_card'] {
+    @include box-shadow(2, true);
+    transition: box-shadow $box-shadow-duration $box-shadow-function, transform 0.3s;
+    will-change: box-shadow, transform;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  div[class^='_content'] {
+    padding: 0;
+  
+    > img {
+      height: 100%;
+      width: 100%;
+    }
+  }
+}
+
+.score {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  > span {
+    white-space: nowrap;
+  }
+}
