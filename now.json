@@ -5,7 +5,8 @@
     { "src": "server/src/index.ts", "use": "@now/node-server@canary" }
   ],
   "env": {
-    "apiKey": "@apikey"
+    "apiKey": "@apikey",
+    "apiUrl": "/api"
   },
   "routes": [
     { "src": "^/api.*", "dest": "server/src/index.ts" },
