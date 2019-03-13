@@ -1,43 +1,36 @@
-import { gql } from 'apollo-server';
+import { Company } from '../company/company';
+import { Country } from '../country/country';
+import { Genre } from '../genre/genre';
+import { Language } from '../language/language';
 
 export interface Movie {
   id: number;
-  title: string;
-  summary: string;
-  score: number;
-  votes: number;
-  popularity: number;
-  releaseDate: Date;
-  poster: string;
+  adult: boolean;
   backdrop: string;
+  genres: number[] | Genre[];
   originalLanguage: string;
   originalTitle: string;
+  popularity: number;
+  poster: string;
+  releaseDate: Date;
+  summary: string;
+  score: number;
+  title: string;
   video: boolean;
-  genres: number[];
-  adult: boolean;
+  votes: number;
 }
 
-export const MovieType = gql`
-  type Movie {
-    id: Int
-    title: String
-    summary: String
-    "Average score determined by user vote"
-    score: Float
-    "Amount of user votes"
-    votes: Int
-    """
-    Movie popularity determined by many factors.
-    See https://developers.themoviedb.org/3/getting-started/popularity
-    """
-    popularity: Float
-    releaseDate: String
-    poster: String
-    backdrop: String
-    originalLanguage: String
-    originalTitle: String
-    video: Boolean
-    genres: [Int]
-    adult: Boolean
-  }
-`;
+export interface MovieDetailed extends Movie {
+  imdbId?: string;
+  belongsToCollection?: boolean;
+  budget: number;
+  homepage: string;
+  genres: Genre[];
+  productionCompanies: Company[];
+  productionCountries: Country[];
+  revenue: number;
+  runtime: number;
+  spokenLanguages: Language[];
+  status: string;
+  tagline: string;
+}

@@ -18,16 +18,24 @@ export function remap<T, R = T>(pairs: KeyMap<T, R>): (t: T) => R {
       if (to instanceof Array) {
         const [prop, map] = to;
         mapped[prop] = map(mapped[from]);
+        delete mapped[from];
+      } else if (to instanceof Function) {
+        mapped[from] = to(mapped[from]);
       } else {
         mapped[to] = mapped[from];
+        delete mapped[from];
       }
-      delete mapped[from];
     });
 
     return mapped;
   };
 }
 
-type KeyMap<T, R> = { [K in keyof T]?: To<T, R, K> } | Pair<T, R, keyof T>[];
+export type KeyMap<T, R> =
+  | { [K in keyof T]?: To<T, R, K> }
+  | Pair<T, R, keyof T>[];
 type Pair<T, R, K extends keyof T> = [K, To<T, R, K>];
-type To<T, R, K extends keyof T> = keyof R | [keyof R, (value: T[K]) => any];
+type To<T, R, K extends keyof T> =
+  | keyof R
+  | ((value: T[K]) => any)
+  | [keyof R, (value: T[K]) => any];

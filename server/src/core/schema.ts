@@ -1,21 +1,31 @@
 import { gql } from 'apollo-server';
-import { MovieType } from '../movie/movie';
+import { CompanyType } from '../company/company';
+import { CountryType } from '../country/country';
+import { GenreType } from '../genre/genre';
+import { LanguageType } from '../language/language';
+import { MovieType } from '../movie/movie.type';
 import { MoviesAPI } from '../movie/movies.api';
 import { DataSources } from './data-sources';
 import { Resolvers } from './resolver';
 
 export const typeDefs = gql`
   type Query {
+    movie(id: Int!, region: String): MovieDetailed
     nowPlaying(page: Int, region: String): [Movie]
   }
 
+  ${CompanyType}
+  ${CountryType}
+  ${GenreType}
+  ${LanguageType}
   ${MovieType}
 `;
 
 export const resolvers: Resolvers = {
   Query: {
+    movie: async (_, args, { dataSources: ds }) => ds.moviesAPI.one(args),
     nowPlaying: async (_, args, { dataSources: ds }) =>
-      ds.moviesAPI.getNowPlaying(args),
+      ds.moviesAPI.nowPlaying(args),
   },
 };
 
