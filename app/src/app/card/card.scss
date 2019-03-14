@@ -2,24 +2,28 @@
 
 $padding: 1rem;
 
-.card {
-  display: inline-block;
-  background: white;
-  border-radius: 2px;
-  overflow: hidden;
-  @include box-shadow(2);
-}
-.content {
-  display: flex;
-  padding: $padding;
-}
-.header {
-  display: flex;
-  justify-content: space-between;
-  margin: 0;
-  padding: $padding;
+:global {
+  .muvy-card {
+    display: inline-block;
+    background: white;
+    border-radius: 4px;
+    overflow: hidden;
+    @include box-shadow(1);
+  }
 
-  > * + * {
-    margin-left: 1rem;
+  .muvy-card--content {
+    display: flex;
+    padding: $padding;
+  }
+
+  .muvy-card--header {
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    padding: $padding;
+
+    > * + * {
+      margin-left: 1rem;
+    }
   }
 }

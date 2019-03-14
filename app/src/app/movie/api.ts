@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
-import { Movie } from '~interfaces/movie';
 import { apolloClient } from '../core/apollo-client';
+import { Movie } from './interface';
 
 export const movieApi = {
   nowPlaying,
@@ -13,6 +13,7 @@ const queries = {
       nowPlaying {
         id
         poster
+        releaseDate
         score
         title
         votes
@@ -24,12 +25,20 @@ const queries = {
       movie(id: $id) {
         id
         backdrop
+        budget
+        poster
         releaseDate
+        revenue
         runtime
         score
         summary
+        tagline
         title
         votes
+        genres {
+          id
+          name
+        }
       }
     }
   `,

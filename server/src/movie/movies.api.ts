@@ -19,9 +19,12 @@ export class MoviesAPI extends TmdbApi {
   }
 }
 
-const mapImage = (path: string) => `${environment.imagesUrl}/w500${path}`;
+const mapImage = (size?: number) => {
+  const width = size ? `w${size}` : 'original';
+  return (path: string) => `${environment.imagesUrl}/${width}${path}`;
+};
 const mapCompany = remap<DbCompany, Company>({
-  logoPath: ['logo', mapImage],
+  logoPath: ['logo', mapImage(500)],
 });
 const mapCountry = remap<DbCountry, Country>({
   iso31661: 'id',
@@ -30,9 +33,9 @@ const mapLanguage = remap<DbLanguage, Language>({
   iso6391: 'id',
 });
 const propMapBase: KeyMap<DbMovie, Movie> = {
-  backdropPath: ['backdrop', mapImage],
+  backdropPath: ['backdrop', mapImage()],
   overview: 'summary',
-  posterPath: ['poster', mapImage],
+  posterPath: ['poster', mapImage(500)],
   voteAverage: 'score',
   voteCount: 'votes',
 };

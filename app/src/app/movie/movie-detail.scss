@@ -1,0 +1,63 @@
+@import '../styles/elevation.scss';
+@import '../styles/media.scss';
+
+.backdrop {
+  position: absolute;
+  opacity: 0.5;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+
+  :global {
+    .muvy-card {
+      @include box-shadow(4);
+      position: relative;
+      margin: 2rem;
+      max-width: 100%;
+      transition: max-width 0.3s;
+      will-change: max-width;
+
+      @media screen and (min-width: $large) {
+        max-width: 66%;
+      }
+
+      > .muvy-card--content {
+        padding: 0;
+      }
+    }
+  }
+}
+
+.content {
+  display: flex;
+
+  > img {
+    height: 100%;
+  }
+}
+
+.body {
+  padding: 2rem;
+}
+
+.title {
+  margin-bottom: 1rem;
+
+  > h2 {
+    margin: 0;
+  }
+
+  > small + small {
+    margin-left: 2rem;
+  }
+}

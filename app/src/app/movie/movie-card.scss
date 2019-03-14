@@ -6,29 +6,41 @@ $width: 500px;
 .li {
   display: inline-block;
   list-style: none;
-  max-width: $width * .75;
-  transition: max-width .3s;
+  max-width: $width * 0.6;
+  transition: max-width 0.3s;
 
   @media screen and (min-width: $small) {
-    max-width: $width;
+    max-width: $width * 0.85;
   }
 
-  div[class^='_card'] {
-    @include box-shadow(2, true);
-    transition: box-shadow $box-shadow-duration $box-shadow-function, transform 0.3s;
-    will-change: box-shadow, transform;
+  > a {
+    display: block;
 
+    &,
     &:hover {
-      transform: scale(1.05);
+      color: rgba(0, 0, 0, 0.9);
     }
   }
 
-  div[class^='_content'] {
-    padding: 0;
-  
-    > img {
-      height: 100%;
-      width: 100%;
+  :global {
+    .muvy-card {
+      @include box-shadow(1, 8);
+      transition: box-shadow $box-shadow-duration $box-shadow-function,
+        transform 0.3s;
+      will-change: box-shadow, transform;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+
+      .muvy-card--content {
+        padding: 0;
+
+        > img {
+          height: 100%;
+          width: 100%;
+        }
+      }
     }
   }
 }
@@ -39,6 +51,12 @@ $width: 500px;
   align-items: flex-end;
 
   > span {
+    display: flex;
+    align-items: center;
     white-space: nowrap;
+
+    :global(.material-icons) {
+      margin-left: 0.5rem;
+    }
   }
 }

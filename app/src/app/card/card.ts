@@ -1,5 +1,5 @@
 import { html, TemplateResult } from 'lit-html';
-import styles from './card.scss';
+import './card.scss';
 
 export const Card = ({
   content,
@@ -10,12 +10,12 @@ export const Card = ({
   footer?: TemplateResult;
 }) =>
   html`
-    <div class=${styles.card}>
+    <div class="muvy-card">
       ${header
         ? html`
-            <h3 class=${styles.header}>${header}</h3>
+            <h3 class="muvy-card--header">${header}</h3>
           `
         : ''}
-      <div class=${styles.content}>${content}</div>
+      <div class="muvy-card--content">${content}</div>
     </div>
   `;

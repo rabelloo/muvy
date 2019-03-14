@@ -7,18 +7,18 @@ const movieBase = `
   backdrop: String
   originalLanguage: String
   originalTitle: String
-  popularity: Float
-  poster: String
   """
   Movie popularity determined by many factors.
   See https://developers.themoviedb.org/3/getting-started/popularity
   """
+  popularity: Float
+  poster: String
   releaseDate: String
   "Average score determined by user vote"
   score: Float
   summary: String
-  "Amount of user votes"
   video: Boolean
+  "Amount of user votes"
   votes: Int
 `;
 

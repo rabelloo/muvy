@@ -1,14 +1,21 @@
 import { html } from 'lit-html';
 import { Card } from '../card/card';
+import { Icon } from '../icon/icon';
 import { Movie } from './interface';
 import styles from './movie-card.scss';
 
-export const MovieCard = ({ id, title, poster, score, votes }: Movie) => {
+export const MovieCard = (movie: Movie) => {
+  const { id, title, releaseDate, poster, score, votes } = movie;
+  const year = new Date(releaseDate).getFullYear();
+
   const header = html`
-    <span>${title}</span>
+    <div class=${styles.title}>
+      <span>${title}</span>
+      <small>(${year})</small>
+    </div>
     <div class=${styles.score}>
-      <span>score: ${score}</span>
-      <span>votes: ${votes}</span>
+      <span title="Average score">${score} ${Icon('star')}</span>
+      <span title="Amount of votes">${votes} ${Icon('face')}</span>
     </div>
   `;
   const content = html`

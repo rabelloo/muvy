@@ -10,7 +10,9 @@ export const NowPlaying = () => {
   const content = movieApi.nowPlaying().then(Movies, GraphQLError);
 
   return html`
-    <h2 class=${styles.title}>Now playing</h2>
-    ${until(content, Loading())}
+    <div class=${styles.nowPlaying}>
+      <h2 class=${styles.title}>Now playing</h2>
+      ${until(content, Loading())}
+    </div>
   `;
 };
