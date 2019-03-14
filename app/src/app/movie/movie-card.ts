@@ -3,7 +3,7 @@ import { Card } from '../card/card';
 import { Movie } from './interface';
 import styles from './movie-card.scss';
 
-export const MovieCard = ({ title, poster, score, votes }: Movie) => {
+export const MovieCard = ({ id, title, poster, score, votes }: Movie) => {
   const header = html`
     <span>${title}</span>
     <div class=${styles.score}>
@@ -17,7 +17,7 @@ export const MovieCard = ({ title, poster, score, votes }: Movie) => {
 
   return html`
     <li class=${styles.li}>
-      <a target="_blank">${Card({ header, content })}</a>
+      <a href="/movies/${id}">${Card({ header, content })}</a>
     </li>
   `;
 };

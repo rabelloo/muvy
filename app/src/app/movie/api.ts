@@ -4,6 +4,7 @@ import { apolloClient } from '../core/apollo-client';
 
 export const movieApi = {
   nowPlaying,
+  one,
 };
 
 const queries = {
@@ -11,19 +12,24 @@ const queries = {
     {
       nowPlaying {
         id
-        title
-        summary
-        score
-        votes
-        popularity
-        releaseDate
         poster
+        score
+        title
+        votes
+      }
+    }
+  `,
+  movie: gql`
+    query ($id: Int!) {
+      movie(id: $id) {
+        id
         backdrop
-        originalLanguage
-        originalTitle
-        video
-        genres
-        adult
+        releaseDate
+        runtime
+        score
+        summary
+        title
+        votes
       }
     }
   `,
@@ -35,4 +41,13 @@ async function nowPlaying(): Promise<Movie[]> {
       query: queries.nowPlaying,
     })
     .then(({ data }) => data.nowPlaying);
+}
+
+async function one(id: number): Promise<Movie> {
+  return apolloClient
+    .query<{ movie: Movie }>({
+      query: queries.movie,
+      variables: { id },
+    })
+    .then(({ data }) => data.movie);
 }

@@ -10,7 +10,7 @@ export class TmdbApi extends RESTDataSource {
     params?: URLSearchParamsInit,
     init?: RequestInit
   ): Promise<T[]> {
-    return this.get<Response<T>>(path, params, init).then(({ results }) =>
+    return super.get<Response<T>>(path, params, init).then(({ results }) =>
       results.map(camelize)
     );
   }
