@@ -23,7 +23,7 @@ export const MovieCard = (movie: Movie) => {
   `;
 
   return html`
-    <li class=${styles.li}>
+    <li class=${styles.item}>
       <a href="/movies/${id}">${Card({ header, content })}</a>
     </li>
   `;

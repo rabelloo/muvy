@@ -1,24 +1,26 @@
 @import '../styles/elevation.scss';
 @import '../styles/media.scss';
 
-$width: 500px;
-
-.li {
-  display: inline-block;
+.item {
+  display: flex;
   list-style: none;
-  max-width: $width * 0.6;
-  transition: max-width 0.3s;
+  max-width: 500px;
+  animation: appear 0.3s ease-in both;
 
-  @media screen and (min-width: $small) {
-    max-width: $width * 0.85;
+  @keyframes appear {
+    0% {
+      opacity: 0;
+      transform: scale(0.5);
+    }
   }
 
   > a {
-    display: block;
+    display: flex;
 
     &,
     &:hover {
       color: rgba(0, 0, 0, 0.9);
+      text-decoration: none;
     }
   }
 

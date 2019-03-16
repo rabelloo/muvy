@@ -1,18 +1,23 @@
 @import '../styles/media.scss';
 
-.ul {
+.list {
   display: grid;
   grid-gap: 2rem;
-  grid: auto-flow / auto;
-  justify-content: center;
+  grid: auto-flow / 1fr;
+  place-content: center;
+  place-items: center;
   margin: 0;
   padding: 0;
 
   @media screen and (min-width: $small) {
-    grid: auto-flow / auto auto;
+    grid: auto-flow / 1fr 1fr;
   }
 
   @media screen and (min-width: $medium) {
-    grid: auto-flow / auto auto auto;
+    grid: auto-flow / 1fr 1fr 1fr;
+  }
+
+  @media screen and (min-width: $large) {
+    grid: auto-flow / 1fr 1fr 1fr 1fr;
   }
 }

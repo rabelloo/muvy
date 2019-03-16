@@ -3,11 +3,41 @@
 
 .backdrop {
   position: absolute;
-  opacity: 0.5;
+  opacity: 0.75;
   height: 100%;
   width: 100%;
   object-fit: cover;
   object-position: center;
+  animation: fade 0.3s ease-in both;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+}
+
+.emptyImg {
+  height: 750px;
+  width: 500px;
+}
+.emptyTitle {
+  height: 3rem;
+  width: 30vw;
+}
+:global(.pulse) {
+  background: linear-gradient(45deg, #000, #333);
+  animation: pulse 1s ease-in-out both infinite alternate-reverse;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.1;
+  }
+  100% {
+    opacity: 0.3;
+  }
 }
 
 .container {
@@ -18,22 +48,21 @@
   height: 100vh;
   overflow: hidden;
 
-  :global {
-    .muvy-card {
-      @include box-shadow(4);
-      position: relative;
-      margin: 2rem;
-      max-width: 100%;
-      transition: max-width 0.3s;
-      will-change: max-width;
+  :global(.muvy-card) {
+    @include box-shadow(4);
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.9);
+    margin: 2rem;
+    max-width: 100%;
+    transition: max-width 0.3s;
+    will-change: max-width;
 
-      @media screen and (min-width: $large) {
-        max-width: 66%;
-      }
+    @media screen and (min-width: $large) {
+      max-width: 66%;
+    }
 
-      > .muvy-card--content {
-        padding: 0;
-      }
+    > :global(.muvy-card--content) {
+      padding: 0;
     }
   }
 }
@@ -51,13 +80,24 @@
 }
 
 .title {
-  margin-bottom: 1rem;
+  margin: 0;
+}
 
-  > h2 {
-    margin: 0;
-  }
+.slide {
+  animation: slideTop 0.3s ease-in both;
+}
+
+.subtitle {
+  margin-bottom: 1rem;
 
   > small + small {
     margin-left: 2rem;
+  }
+}
+
+@keyframes slideTop {
+  0% {
+    opacity: 0;
+    transform: translateY(25%);
   }
 }
