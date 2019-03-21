@@ -6,21 +6,23 @@ import styles from './movie-card.scss';
 
 export const MovieCard = (movie: Movie) => {
   const { id, title, releaseDate, poster, score, votes } = movie;
-  const year = new Date(releaseDate).getFullYear();
+  const year = releaseDate && new Date(releaseDate).getFullYear();
 
   const header = html`
     <div class=${styles.title}>
       <span>${title}</span>
-      <small>(${year})</small>
+      <small>${year ? html`(${year})` : ''}</small>
     </div>
     <div class=${styles.score}>
       <span title="Average score">${score} ${Icon('star')}</span>
       <span title="Amount of votes">${votes} ${Icon('face')}</span>
     </div>
   `;
-  const content = html`
-    <img src=${poster} />
-  `;
+
+  // TODO: no poster
+  const content = poster
+    ? html`<img src=${poster} />`
+    : html``;
 
   return html`
     <li class=${styles.item}>

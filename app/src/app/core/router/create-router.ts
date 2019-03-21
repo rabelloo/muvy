@@ -27,6 +27,7 @@ export const createRouter = () => {
   window.addEventListener('popstate', runWithCurrent);
 
   return {
+    navigate,
     route: createRouteDirective(routes, runWithCurrent),
     destroy: () => {
       document.body.removeEventListener('click', observer);
@@ -34,3 +35,16 @@ export const createRouter = () => {
     },
   };
 };
+
+/**
+ * Navigates to a specified route.
+ * @param url Absolute url from origin.
+ * @example
+ * navigate('/movies')
+ * // localhost:1234/movies
+ * navigate('/movies/4321')
+ * // localhost:1234/movies/4321
+ */
+function navigate(url: string) {
+  window.history.pushState({}, '', url);
+}

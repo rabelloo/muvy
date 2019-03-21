@@ -7,21 +7,35 @@ import { KeyMap, remap } from '../util/remap';
 import { Movie, MovieDetailed } from './movie';
 
 export class MoviesAPI extends TmdbApi {
-  baseURL = `${environment.apiUrl}/movie/`;
+  baseURL = `${environment.apiUrl}/`;
 
   async nowPlaying(args: { page?: number; region?: string }): Promise<Movie[]> {
-    return this.getResults<DbMovie>('now_playing', args).then(mapMovies);
+    const { ...rest } = args;
+    return this.getResults<DbMovie>('movie/now_playing', { ...rest }).then(
+      mapMovies
+    );
   }
 
-  async one(args: { id?: number; region?: string }): Promise<MovieDetailed> {
-    const { id, region } = args;
-    return this.get<DbMovie>(`${id}`, { region }).then(mapMovieDetailed);
+  async one(args: { id: number; region?: string }): Promise<MovieDetailed> {
+    const { id, ...rest } = args;
+    return this.get<DbMovie>(`movie/${id}`, { ...rest }).then(mapMovieDetailed);
+  }
+
+  async search(args: {
+    title: string;
+    page?: number;
+    region?: string;
+  }): Promise<Movie[]> {
+    const { title: query, ...rest } = args;
+    return this.getResults<DbMovie>('search/movie', { query, ...rest }).then(
+      mapMovies
+    );
   }
 }
 
 const mapImage = (size?: number) => {
   const width = size ? `w${size}` : 'original';
-  return (path: string) => `${environment.imagesUrl}/${width}${path}`;
+  return (path: string) => path && `${environment.imagesUrl}/${width}${path}`;
 };
 const mapCompany = remap<DbCompany, Company>({
   logoPath: ['logo', mapImage(500)],

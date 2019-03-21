@@ -29,4 +29,4 @@ const getParams = (path: string) =>
     .map(param => param.slice(1));
 
 const getRegex = (path: string) =>
-  new RegExp(path.replace(/^\*$/g, '.*').replace(/:(.*)/g, '(.*)'));
+  new RegExp(`^${path.replace(/^\*$/g, '.*').replace(/:(.*)/g, '(.*)')}$`);

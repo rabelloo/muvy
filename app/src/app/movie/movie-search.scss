@@ -1,0 +1,42 @@
+.search {
+  padding: 2rem;
+}
+
+.h2 {
+  display: flex;
+  align-items: center;
+}
+
+.label {
+  display: inline-flex;
+  margin-left: 2rem;
+  padding: 0 0.5rem;
+  place-items: center;
+  position: relative;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.input {
+  background: none;
+  border: none;
+  line-height: 2rem;
+  outline: none;
+  padding: 0;
+
+  &:focus ~ .line {
+    transform: scaleX(1);
+  }
+}
+
+.line {
+  background-color: var(--primary);
+  opacity: 0.8;
+  position: absolute;
+  height: 2px;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+  will-change: transform;
+}

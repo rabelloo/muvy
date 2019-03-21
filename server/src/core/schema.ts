@@ -11,6 +11,7 @@ import { Resolvers } from './resolver';
 export const typeDefs = gql`
   type Query {
     movie(id: Int!, region: String): MovieDetailed
+    movies(title: String!, page: Int, region: String): [Movie]
     nowPlaying(page: Int, region: String): [Movie]
   }
 
@@ -24,6 +25,7 @@ export const typeDefs = gql`
 export const resolvers: Resolvers = {
   Query: {
     movie: async (_, args, { dataSources: ds }) => ds.moviesAPI.one(args),
+    movies: async (_, args, { dataSources: ds }) => ds.moviesAPI.search(args),
     nowPlaying: async (_, args, { dataSources: ds }) =>
       ds.moviesAPI.nowPlaying(args),
   },

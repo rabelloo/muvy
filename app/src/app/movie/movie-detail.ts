@@ -15,6 +15,7 @@ export const MovieDetail = ({ params: { id } }: RouteArgs) => {
   `;
 };
 
+// TODO: better skeleton
 const empty = html`
   <div class=${styles.container}>
     <img class=${styles.backdrop} style="background: linear-gradient(45deg, #000, #333); opacity: .5" />
@@ -39,16 +40,19 @@ const detail = (movie: MovieDetailed) => html`
 const content = (movie: MovieDetailed) => {
   const { poster, title, releaseDate, summary, tagline } = movie;
   const { genres, revenue, budget } = movie;
-  const [month, day, year] = new Date(releaseDate)
-    .toDateString()
-    .split(' ')
-    .slice(1);
+  const [month, day, year] = releaseDate
+    ? new Date(releaseDate)
+      .toDateString()
+      .split(' ')
+      .slice(1)
+    : ['', '', ''];
 
+  // TODO: share header with movie-card
   return html`
     <div class=${styles.content}>
       <img src=${poster} />
       <div class=${styles.body}>
-        <h2 class=${styles.title}>${title} (${year})</h2>
+        <h2 class=${styles.title}>${title} ${year ? html`(${year})` : ''}</h2>
         <div class=${styles.slide}>
           <div class=${styles.subtitle}>
             ${tagline ? html`<small>${tagline}</small>` : ''}

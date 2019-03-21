@@ -3,25 +3,14 @@ import { apolloClient } from '../core/apollo-client';
 import { Movie } from './interface';
 
 export const movieApi = {
+  search,
   nowPlaying,
   one,
 };
 
 const queries = {
-  nowPlaying: gql`
-    {
-      nowPlaying {
-        id
-        poster
-        releaseDate
-        score
-        title
-        votes
-      }
-    }
-  `,
   movie: gql`
-    query ($id: Int!) {
+    query($id: Int!) {
       movie(id: $id) {
         id
         backdrop
@@ -42,21 +31,52 @@ const queries = {
       }
     }
   `,
+  movies: gql`
+    query($title: String!) {
+      movies(title: $title) {
+        id
+        poster
+        releaseDate
+        score
+        title
+        votes
+      }
+    }
+  `,
+  nowPlaying: gql`
+    {
+      nowPlaying {
+        id
+        poster
+        releaseDate
+        score
+        title
+        votes
+      }
+    }
+  `,
 };
 
+async function search(title: string): Promise<Movie[]> {
+  return query<Movie[]>('movies', { title });
+}
+
 async function nowPlaying(): Promise<Movie[]> {
-  return apolloClient
-    .query<{ nowPlaying: Movie[] }>({
-      query: queries.nowPlaying,
-    })
-    .then(({ data }) => data.nowPlaying);
+  return query<Movie[]>('nowPlaying');
 }
 
 async function one(id: number): Promise<Movie> {
+  return query<Movie>('movie', { id });
+}
+
+async function query<T>(
+  name: keyof typeof queries,
+  variables?: any
+): Promise<T> {
   return apolloClient
-    .query<{ movie: Movie }>({
-      query: queries.movie,
-      variables: { id },
+    .query({
+      query: queries[name],
+      variables,
     })
-    .then(({ data }) => data.movie);
+    .then(({ data }) => data[name]);
 }
