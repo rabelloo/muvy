@@ -1,4 +1,5 @@
 import { TemplateResult } from 'lit-html';
+import { State } from '../state';
 
 export interface Route {
   derender: Derenderer;
@@ -10,6 +11,7 @@ export interface Route {
 
 export interface RouteArgs {
   params: { [key: string]: string };
+  state: State;
 }
 
 export type Derenderer = () => void;

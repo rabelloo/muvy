@@ -17,6 +17,7 @@
     "graphql": "^14.2.1",
     "graphql-tag": "^2.10.1",
     "lit-html": "^1.0.0",
+    "tamda": "^1.0.3",
     "workbox-cacheable-response": "^4.3.1",
     "workbox-core": "^4.3.1",
     "workbox-expiration": "^4.3.1",

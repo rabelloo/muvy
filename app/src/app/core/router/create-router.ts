@@ -1,3 +1,4 @@
+import { debounce } from 'tamda';
 import { createMatcher } from './create-matcher';
 import { createRouteDirective } from './create-route-directive';
 import { Route } from './interfaces';
@@ -14,12 +15,12 @@ import { observeClickWith } from './observe-click-with';
  *
  * html`${
  *  route('/clients', () => html`Hello from /clients`);
- *  route('/clients/:id', ({ id }) => html`Hello from /clients/${id}`);
+ *  route('/clients/:id', ({ params: { id } }) => html`Hello from /clients/${id}`);
  * }`;
  */
 export const createRouter = () => {
-  const routes = new Set<Route>();
-  const runMatches = createMatcher(() => routes);
+  const routes = new Map<string, Route>();
+  const runMatches = debounce(createMatcher(() => routes));
   const runWithCurrent = () => runMatches(window.location.pathname);
   const observer = observeClickWith(runMatches);
 

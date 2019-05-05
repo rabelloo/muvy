@@ -1,18 +1,10 @@
 import { html } from 'lit-html';
-import { until } from 'lit-html/directives/until';
 import { Card } from '../card/card';
-import { RouteArgs } from '../core/router';
-import { GraphQLError } from '../graphQL-error';
-import { movieApi } from './api';
 import { MovieDetailed } from './interface';
 import styles from './movie-detail.scss';
 
-export const MovieDetail = ({ params: { id } }: RouteArgs) => {
-  const movie = movieApi.one(+id).then(detail, GraphQLError);
-
-  return html`
-    ${until(movie, empty)}
-  `;
+export const MovieDetail = (movie: MovieDetailed) => {
+  return movie && movie.id ? detail(movie) : empty;
 };
 
 // TODO: better skeleton
@@ -73,7 +65,7 @@ const content = (movie: MovieDetailed) => {
   `;
 };
 
-// TODO: money mask alrgorithm
+// TODO: money mask algorithm
 const format = (value: number | string): string =>
   `${value}`.length > 3
     ? `${format(`${value}`.slice(0, -3))}.${`${value}`.slice(-3)}`

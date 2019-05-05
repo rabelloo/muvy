@@ -6,8 +6,15 @@ import { Route, RouteArgs, WithRoute } from './interfaces';
  * Creates a directive for specifying routes
  * that will only render when it matches the browser url.
  */
-export const createRouteDirective = (routes: Set<Route>, init: () => void) =>
+export const createRouteDirective = (
+  routes: Map<string, Route>,
+  iterateRoutes: () => void
+) =>
   directive((path: string, renderer: WithRoute) => {
+    if (routes.has(path)) {
+      return iterateRoutes;
+    }
+
     let ref: Part;
     const render = (args: RouteArgs) => {
       if (ref) {
@@ -22,10 +29,10 @@ export const createRouteDirective = (routes: Set<Route>, init: () => void) =>
       }
     };
 
-    routes.add(createRoute(path, render, remove));
+    routes.set(path, createRoute(path, render, remove));
 
     return (part: Part): void => {
       ref = part;
-      init();
+      iterateRoutes();
     };
   });

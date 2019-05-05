@@ -67,7 +67,7 @@ function nowPlaying(): Promise<Movie[]> {
 }
 
 function one(id: number): Promise<Movie> {
-  return apollo.query<Movie>('movie', { id });
+  return apollo.exhaustQuery<Movie>('movie', { id });
 }
 
 function search(title: string): Promise<Movie[]> {
