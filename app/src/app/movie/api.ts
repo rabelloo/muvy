@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import { apolloClient } from '../core/apollo-client';
+import { apolloWith } from '../core/apollo-with';
 import { Movie } from './interface';
 
 export const movieApi = {
@@ -57,26 +57,16 @@ const queries = {
   `,
 };
 
-async function search(title: string): Promise<Movie[]> {
-  return query<Movie[]>('movies', { title });
+const apollo = apolloWith(queries);
+
+function search(title: string): Promise<Movie[]> {
+  return apollo.switchQuery<Movie[]>('movies', { title });
 }
 
-async function nowPlaying(): Promise<Movie[]> {
-  return query<Movie[]>('nowPlaying');
+function nowPlaying(): Promise<Movie[]> {
+  return apollo.query<Movie[]>('nowPlaying');
 }
 
-async function one(id: number): Promise<Movie> {
-  return query<Movie>('movie', { id });
-}
-
-async function query<T>(
-  name: keyof typeof queries,
-  variables?: any
-): Promise<T> {
-  return apolloClient
-    .query({
-      query: queries[name],
-      variables,
-    })
-    .then(({ data }) => data[name]);
+function one(id: number): Promise<Movie> {
+  return apollo.query<Movie>('movie', { id });
 }

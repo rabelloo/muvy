@@ -1,5 +1,4 @@
 import { html } from 'lit-html';
-import { classMap } from 'lit-html/directives/class-map';
 import { navigate, RouteArgs } from '../core/router';
 import { withState } from '../directives';
 import { Icon } from '../icon/icon';
@@ -13,6 +12,7 @@ export const MovieSearch = ({ params: { title = '' } }: RouteArgs) => {
   const search = (value: string) => {
     navigate(`/movies/search/${value}`);
     movieApi.search(value).then(render);
+    title = value;
   };
 
   return html`
@@ -42,7 +42,7 @@ export const MovieSearch = ({ params: { title = '' } }: RouteArgs) => {
               <div class=${styles.line}></div>
             </label>
           </h2>
-          ${Movies(state)}
+          ${state.length ? Movies(state) : title ? 'No movies found' : ''}
         `;
       })}
     </div>
