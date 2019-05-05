@@ -13,6 +13,7 @@
   "dependencies": {
     "apollo-boost": "^0.3.1",
     "dotenv": "^6.2.0",
+    "firebase": "^5.11.1",
     "graphql": "^14.2.1",
     "graphql-tag": "^2.10.1",
     "lit-html": "^1.0.0",

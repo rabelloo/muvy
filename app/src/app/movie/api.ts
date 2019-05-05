@@ -1,11 +1,14 @@
+import firebase from 'firebase/app';
 import gql from 'graphql-tag';
 import { apolloWith } from '../core/apollo-with';
+import { user } from '../core/user';
 import { Movie } from './interface';
 
 export const movieApi = {
-  search,
   nowPlaying,
   one,
+  search,
+  watched,
 };
 
 const queries = {
@@ -59,14 +62,21 @@ const queries = {
 
 const apollo = apolloWith(queries);
 
-function search(title: string): Promise<Movie[]> {
-  return apollo.switchQuery<Movie[]>('movies', { title });
-}
-
 function nowPlaying(): Promise<Movie[]> {
   return apollo.query<Movie[]>('nowPlaying');
 }
 
 function one(id: number): Promise<Movie> {
   return apollo.query<Movie>('movie', { id });
+}
+
+function search(title: string): Promise<Movie[]> {
+  return apollo.switchQuery<Movie[]>('movies', { title });
+}
+
+function watched(movie: Movie, hasWatched: boolean): Promise<void> {
+  const value = firebase.firestore.FieldValue;
+  const method = hasWatched ? 'arrayUnion' : 'arrayRemove';
+
+  return user.update({ watched: value[method](movie.id) });
 }

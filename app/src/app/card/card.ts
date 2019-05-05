@@ -13,7 +13,7 @@ export const Card = ({
     <div class="muvy-card">
       ${header
         ? html`
-            <h3 class="muvy-card--header">${header}</h3>
+            <div class="muvy-card--header">${header}</div>
           `
         : ''}
       <div class="muvy-card--content">${content}</div>
