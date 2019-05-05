@@ -2,7 +2,7 @@ import { Plugin as Responses } from 'workbox-cacheable-response';
 import { setCacheNameDetails } from 'workbox-core';
 import { Plugin as Expiration } from 'workbox-expiration';
 import { precacheAndRoute } from 'workbox-precaching';
-import { registerRoute } from 'workbox-routing';
+import { registerRoute, setDefaultHandler } from 'workbox-routing';
 import { CacheFirst, StaleWhileRevalidate } from 'workbox-strategies';
 
 setCacheNameDetails({
@@ -13,7 +13,7 @@ setCacheNameDetails({
 precacheAndRoute([]);
 
 registerRoute(
-  /\/|index\.html|\.(?:js|css)$/,
+  /\.(?:js|css)$/,
   new StaleWhileRevalidate({
     cacheName: 'static-assets',
   })
@@ -54,3 +54,5 @@ registerRoute(
     ],
   })
 );
+
+setDefaultHandler(new StaleWhileRevalidate());
