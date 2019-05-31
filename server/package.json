@@ -9,16 +9,16 @@
   },
   "dependencies": {
     "apollo-datasource-rest": "^0.3.2",
-    "apollo-server": "^2.4.8",
+    "apollo-server": "^2.5.1",
     "dotenv": "^6.2.0",
-    "graphql": "^14.1.1"
+    "graphql": "^14.3.1"
   },
   "devDependencies": {
-    "@types/dotenv": "^6.1.0",
-    "@types/graphql": "^14.0.7",
-    "ts-node-dev": "^1.0.0-pre.32",
+    "@types/dotenv": "^6.1.1",
+    "@types/graphql": "^14.2.0",
+    "ts-node-dev": "^1.0.0-pre.39",
     "tsconfig-paths": "^3.8.0",
-    "tslint": "^5.13.1",
-    "typescript": "^3.3.3333"
+    "tslint": "^5.17.0",
+    "typescript": "^3.5.1"
   }
 }
