@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "apollo-datasource-rest": "^0.3.2",
-    "apollo-server": "^2.5.1",
+    "apollo-server": "^2.14.2",
     "dotenv": "^6.2.0",
     "graphql": "^14.3.1"
   },
