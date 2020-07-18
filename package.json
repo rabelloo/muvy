@@ -13,12 +13,16 @@
   },
   "homepage": "https://github.com/rabelloo/muvy#readme",
   "scripts": {
-    "start": "concurrently \"npm run --prefix app start\" \"npm run --prefix server start\"",
-    "build": "concurrently \"npm run --prefix app build\" \"npm run --prefix server build\""
+    "start": "concurrently npm:start:*",
+    "start:app": "npm run --prefix app start",
+    "start:server": "npm run --prefix server start",
+    "build": "concurrently npm:build:*",
+    "build:app": "npm run --prefix app build",
+    "build:server": "npm run --prefix server build"
   },
   "devDependencies": {
-    "concurrently": "^4.1.0",
-    "typescript": "^3.5.1",
-    "typescript-plugin-css-modules": "^1.1.1"
+    "concurrently": "^5.2.0",
+    "typescript": "^3.9.7",
+    "typescript-plugin-css-modules": "^2.4.0"
   }
 }
