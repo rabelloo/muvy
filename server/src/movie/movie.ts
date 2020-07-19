@@ -28,7 +28,7 @@ export interface MovieDetailed extends Movie {
   genres: Genre[];
   productionCompanies: Company[];
   productionCountries: Country[];
-  revenue: number;
+  revenue: string;
   runtime: number;
   spokenLanguages: Language[];
   status: string;

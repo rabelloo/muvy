@@ -39,7 +39,7 @@ export const MovieType = gql`
     productionCompanies: [Company]
     productionCountries: [Country]
     "Amount of money earned globally in dollars"
-    revenue: Int
+    revenue: String
     "Movie length/duration in minutes"
     runtime: Int
     spokenLanguages: [Language]

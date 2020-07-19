@@ -59,6 +59,7 @@ const mapMovieDetailed = remap<DbMovie, MovieDetailed>({
   ...propMapBase,
   productionCompanies: (c) => c.map(mapCompany),
   productionCountries: (c) => c.map(mapCountry),
+  revenue: (r) => `${r}`,
   spokenLanguages: (l) => l.map(mapLanguage),
 });
 
@@ -70,6 +71,7 @@ interface DbMovie extends Partial<Movie> {
   productionCompanies: DbCompany[];
   productionCountries: DbCountry[];
   releaseDate: Date;
+  revenue: BigInt;
   spokenLanguages: DbLanguage[];
   voteAverage: number;
   voteCount: number;

@@ -4,7 +4,7 @@ import { MovieDetailed } from './interface';
 import styles from './movie-detail.scss';
 
 export const MovieDetail = (movie: MovieDetailed) => {
-  return movie && movie.id ? detail(movie) : empty;
+  return movie?.id ? detail(movie) : empty;
 };
 
 // TODO: better skeleton
@@ -70,6 +70,6 @@ const format = (value: number | string): string =>
   `${value}`.length > 3
     ? `${format(`${value}`.slice(0, -3))}.${`${value}`.slice(-3)}`
     : `${value}`;
-const money = (value: number) => html`
-  <span title="$${format(value)}">$${Math.round(value / 1000000) + 'M'}</span>
+const money = (value: number | string) => html`
+  <span title="$${format(value)}">$${Math.round(+value / 1000000) + 'M'}</span>
 `;
