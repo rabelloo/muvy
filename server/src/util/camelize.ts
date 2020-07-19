@@ -5,21 +5,17 @@ import { camelCase } from './camel-case';
  * to one with camelCase equivalent property keys.
  * @param data Object to remap.
  */
-export function camelize<T extends { [key: string]: any }>(data: T): T {
+export function camelize<T>(data: T): T {
+  if (!(data instanceof Object)) return data;
+  if (data instanceof Array) return data.map(camelize) as any;
+
   const mapped = {} as T;
 
   // reducer is slower
-  Object.entries(data).forEach(([prop, value]) => {
-    const camelized = camelCase(prop);
-    mapped[camelized] =
-      value instanceof Array
-        ? value.map(maybeCamelize)
-        : maybeCamelize(value);
+  Object.entries(data).forEach(([key, value]) => {
+    const camelCaseKey = camelCase(key) as keyof T;
+    mapped[camelCaseKey] = camelize(value);
   });
 
   return mapped;
 }
-
-const isObject = (value: any): value is object =>
-  value && value.constructor === {}.constructor;
-const maybeCamelize = (v: any) => (isObject(v) ? camelize(v) : v);
