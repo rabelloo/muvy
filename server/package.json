@@ -16,7 +16,7 @@
   "devDependencies": {
     "@types/dotenv": "^8.2.0",
     "@types/graphql": "^14.5.0",
-    "ts-node-dev": "^1.0.0-pre.39",
+    "ts-node-dev": "^1.0.0-pre.52",
     "tsconfig-paths": "^3.9.0",
     "tslint": "^6.1.2",
     "typescript": "^3.9.7"
