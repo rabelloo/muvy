@@ -1,6 +1,6 @@
-import { Genre } from './genre';
 import { Company } from './company';
 import { Country } from './country';
+import { Genre } from './genre';
 import { Language } from './language';
 
 export interface Movie {

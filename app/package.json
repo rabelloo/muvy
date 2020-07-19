@@ -5,8 +5,8 @@
     "start": "parcel src/index.html",
     "build": "parcel build src/index.html",
     "now-build": "npm run build",
-    "lint": "tslint src/**/*.ts --fix",
-    "lint:ci": "tslint src/**/*.ts",
+    "lint": "tslint -p tsconfig.json --fix",
+    "lint:ci": "tslint -p tsconfig.json",
     "test": "jest --watch",
     "test:ci": "jest --coverage"
   },
