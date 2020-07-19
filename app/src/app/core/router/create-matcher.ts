@@ -12,7 +12,7 @@ export const createMatcher = (routes: () => Map<string, Route>) => {
   return (href: string) => {
     const lastRoute = activeRoute;
 
-    Array.from(routes().values()).some(route => {
+    Array.from(routes().values()).some((route) => {
       const { params, regex, render } = route;
       const matches = href.match(regex);
 

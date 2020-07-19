@@ -57,9 +57,9 @@ const mapMovie = remap<DbMovie, Movie>({ ...propMapBase, genreIds: 'genres' });
 const mapMovies = (movies: DbMovie[]): Movie[] => movies.map(mapMovie);
 const mapMovieDetailed = remap<DbMovie, MovieDetailed>({
   ...propMapBase,
-  productionCompanies: c => c.map(mapCompany),
-  productionCountries: c => c.map(mapCountry),
-  spokenLanguages: l => l.map(mapLanguage),
+  productionCompanies: (c) => c.map(mapCompany),
+  productionCountries: (c) => c.map(mapCountry),
+  spokenLanguages: (l) => l.map(mapLanguage),
 });
 
 interface DbMovie extends Partial<Movie> {

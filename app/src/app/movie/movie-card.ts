@@ -23,7 +23,10 @@ export const MovieCard = (movie: Movie) => {
 
     return html`
       <div class=${styles.image}>
-        <button title=${state ? 'Watched' : 'Not watched'} @click=${toggleWatched}>
+        <button
+          title=${state ? 'Watched' : 'Not watched'}
+          @click=${toggleWatched}
+        >
           ${state ? Icon('check', 'success') : Icon('add')}
         </button>
         ${poster ? html`<img src=${poster} />` : ''}

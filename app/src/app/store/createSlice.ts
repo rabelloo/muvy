@@ -24,7 +24,7 @@ export function createSlice<S, K extends keyof S>({
   subscribe: (subscriber: Subscriber<S>) => Subscription;
 }): StoreSlice<S[K]> {
   const subs = (subscriber: Subscriber<S[K]>): Subscription =>
-    subscribe(state => subscriber(state[property]));
+    subscribe((state) => subscriber(state[property]));
 
   return {
     case: (type: string): CaseSetup<S[K]> => ({
@@ -57,7 +57,7 @@ export function createSlice<S, K extends keyof S>({
           );
         },
         subscribe: (subscriber: Subscriber<any>): Subscription =>
-          subs(state => subscriber(state[prop])),
+          subs((state) => subscriber(state[prop])),
       }),
     subscribe: subs,
   };

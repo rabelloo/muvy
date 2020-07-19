@@ -25,8 +25,8 @@ export const createRoute = (
 const getParams = (path: string) =>
   path
     .split('/')
-    .filter(part => part.startsWith(':'))
-    .map(param => param.slice(1));
+    .filter((part) => part.startsWith(':'))
+    .map((param) => param.slice(1));
 
 const getRegex = (path: string) =>
   new RegExp(`^${path.replace(/^\*$/g, '.*').replace(/:(.*)/g, '(.*)')}$`);

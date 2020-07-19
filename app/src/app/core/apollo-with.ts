@@ -25,7 +25,7 @@ async function query<Q, T>(
 ): Promise<T> {
   return apolloClient
     .query({
-      query: queries[name],
+      query: queries[name] as any,
       variables,
     })
     .then(({ data }) => data[name]);
@@ -39,7 +39,7 @@ function exhaustQuery<Q, T>(
 ): Promise<T> {
   return (
     pending.promise ||
-    query(queries, name, variables).then(data => {
+    query(queries, name, variables).then((data) => {
       pending.promise = undefined as any;
       return data;
     })
@@ -59,7 +59,7 @@ function switchQuery<Q, T>(
   return new Promise((resolve, reject) => {
     pending.subscription = apolloClient
       .watchQuery({
-        query: queries[name],
+        query: queries[name] as any,
         variables,
       })
       .subscribe(({ data, errors }) =>

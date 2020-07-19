@@ -23,18 +23,17 @@ $sizes: (
   ((10, 13, 6), (21, 33, 3), (8, 40, 7)),
   ((10, 14, 6), (22, 35, 3), (8, 42, 7)),
   ((11, 14, 7), (23, 36, 3), (9, 44, 8)),
-  ((11, 15, 7), (24, 38, 3), (9, 46, 8)),
+  ((11, 15, 7), (24, 38, 3), (9, 46, 8))
 );
 
-$alphas: (.2, .14, .12);
+$alphas: (0.2, 0.14, 0.12);
 
 $box-shadow-duration: 280ms;
 $box-shadow-function: cubic-bezier(0.4, 0, 0.2, 1);
 
 @mixin box-shadow($elevation, $onHover: 0) {
   box-shadow: box-shadow-line($elevation + 1, 1),
-              box-shadow-line($elevation + 1, 2),
-              box-shadow-line($elevation + 1, 3);
+    box-shadow-line($elevation + 1, 2), box-shadow-line($elevation + 1, 3);
 
   @if ($onHover > 0) {
     transition: box-shadow $box-shadow-duration $box-shadow-function;
@@ -42,8 +41,7 @@ $box-shadow-function: cubic-bezier(0.4, 0, 0.2, 1);
 
     &:hover {
       box-shadow: box-shadow-line($onHover + 1, 1),
-                  box-shadow-line($onHover + 1, 2),
-                  box-shadow-line($onHover + 1, 3);
+        box-shadow-line($onHover + 1, 2), box-shadow-line($onHover + 1, 3);
     }
   }
 }

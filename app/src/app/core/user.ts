@@ -7,17 +7,17 @@ export let user: User = {
   update: prompt('update'),
 } as any;
 
-firebaseApp.auth().onAuthStateChanged(u => {
-  user.data.displayName = u!.displayName!;
-  signIn(u!);
+firebaseApp.auth().onAuthStateChanged((u) => {
+  if (!u) return;
+  user.data.displayName = u.displayName ?? '';
+  signIn(u);
 });
 
 async function prompt(method: 'set' | 'update') {
-  // tslint:disable-next-line: only-arrow-functions
-  return async function() {
+  return async (...args: unknown[]) => {
     await auth();
 
-    user[method](arguments);
+    user[method](args);
   };
 }
 
@@ -26,7 +26,7 @@ async function auth() {
     .auth()
     .signInWithPopup(new firebase.auth.GoogleAuthProvider());
 
-  await signIn(result.user!);
+  if (result.user) await signIn(result.user);
 }
 
 export async function signIn({ displayName, uid }: firebase.User) {
@@ -38,7 +38,7 @@ export async function signIn({ displayName, uid }: firebase.User) {
     user.set({ displayName, watched: [] } as UserData);
   }
 
-  user.onSnapshot(u => {
+  user.onSnapshot((u) => {
     user.data = u.data() as any;
   });
 }

@@ -10,7 +10,7 @@
 export function remap<T, R = T>(pairs: KeyMap<T, R>): (t: T) => R {
   const dict = pairs instanceof Array ? pairs : Object.entries(pairs);
 
-  return data => {
+  return (data) => {
     const mapped: any = { ...data };
 
     // reducer is slower

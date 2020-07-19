@@ -60,8 +60,8 @@ Choose a different type and make sure you only call register() once per type.`);
 
   function set<P>(newState: State, type: string, payload?: P) {
     state = Object.freeze(newState);
-    metaReducers.forEach(meta => meta(state, { type, payload }));
-    subscribers.forEach(subscriber => subscriber(state));
+    metaReducers.forEach((meta) => meta(state, { type, payload }));
+    subscribers.forEach((subscriber) => subscriber(state));
   }
 
   function setProp<K extends keyof State, P>(

@@ -11,11 +11,7 @@ export const Card = ({
 }) =>
   html`
     <div class="muvy-card">
-      ${header
-        ? html`
-            <div class="muvy-card--header">${header}</div>
-          `
-        : ''}
+      ${header ? html`<div class="muvy-card--header">${header}</div>` : ''}
       <div class="muvy-card--content">${content}</div>
     </div>
   `;

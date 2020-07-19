@@ -10,9 +10,12 @@ export const MovieDetail = (movie: MovieDetailed) => {
 // TODO: better skeleton
 const empty = html`
   <div class=${styles.container}>
-    <img class=${styles.backdrop} style="background: linear-gradient(45deg, #000, #333); opacity: .5" />
-    ${Card({ content: html`
-      <div style="display: flex">
+    <img
+      class=${styles.backdrop}
+      style="background: linear-gradient(45deg, #000, #333); opacity: .5"
+    />
+    ${Card({
+      content: html` <div style="display: flex">
         <img class="pulse ${styles.emptyImg}" />
         <div class=${styles.body} style="width: 100vw">
           <h2 class="pulse ${styles.emptyTitle}"></h2>
@@ -33,10 +36,7 @@ const content = (movie: MovieDetailed) => {
   const { poster, title, releaseDate, summary, tagline } = movie;
   const { genres, revenue, budget } = movie;
   const [month, day, year] = releaseDate
-    ? new Date(releaseDate)
-      .toDateString()
-      .split(' ')
-      .slice(1)
+    ? new Date(releaseDate).toDateString().split(' ').slice(1)
     : ['', '', ''];
 
   // TODO: share header with movie-card
