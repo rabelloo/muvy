@@ -1,8 +1,7 @@
 import { Movie, MovieDetailed } from '../movie/interface';
-import { ObjectMap } from './object-map';
 
 export interface State {
-  movies: ObjectMap<Movie | MovieDetailed>;
+  movies: Record<string, Movie | MovieDetailed>;
   user: User;
 }
 
